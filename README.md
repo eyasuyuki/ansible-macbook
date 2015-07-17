@@ -18,7 +18,7 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 brew install ansible
 ```
 
-# Checkout this repository via another host
+# Checkout this repository to another host
 ```
 git clone git@github.com:eyasuyuki/ansible-macbook.git
 cd ansible-macbook
