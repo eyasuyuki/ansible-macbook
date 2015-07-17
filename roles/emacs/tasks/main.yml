@@ -1,0 +1,19 @@
+---
+# Bashrc
+- name: Copy Dot Files
+  copy: src={{ item }} dest=~/{{ item }}
+  with_items:
+    - ".emacs.el"
+    - ".emacs-faces.el"
+
+# Copy Emacs Files
+- name: Make Emacs Lib
+  file: path=~/lib/emacs state=directory owner=yasuyuki mode=0755
+- name: Copy Emacs Lisps
+  copy: src={{ item }} dest=~/lib/emacs/{{ item }}
+  with_items:
+    - "dockerfile-mode.el"
+    - "ecmascript-mode.el"
+    - "go-mode-load.el"
+    - "go-mode.el"
+    - "markdown-mode.el"

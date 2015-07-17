@@ -1,0 +1,15 @@
+---
+# Bin Dir
+- name: Make Bin Dir
+  file: path=~/bin state=directory owner=yasuyuki mode=0755
+
+# Bashrc
+- name: Copy Dot Files
+  copy: src={{ item }} dest=~/{{ item }}
+  with_items:
+    - ".bash_profile"
+    - ".bashrc"
+
+# Copy Karabiner file
+- name: Copy Karabiner file
+  copy: src=private.xml dest=~/Library/Application Support/Karabiner/private.xml

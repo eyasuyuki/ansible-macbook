@@ -1,0 +1,23 @@
+---
+# Brew Tap
+- name: Brew Tap
+  shell: /usr/local/bin/brew tap {{ item }}
+  with_items: brew_tap
+
+# Brew Update
+- name: Brew Update
+  homebrew: update_homebrew=yes upgrade_all=yes
+
+# Install Apps
+- name: Install Apps
+  homebrew: name={{ item }}
+  with_items: brew_app
+
+# Cask Update
+- name: Cask Update
+  shell: /usr/local/bin/brew cask update
+
+# Install Casks
+- name: Install Casks
+  homebrew_cask: name={{ item }}
+  with_items: brew_cask

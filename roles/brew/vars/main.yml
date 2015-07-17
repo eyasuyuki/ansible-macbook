@@ -1,0 +1,32 @@
+---
+brew_tap:
+  - caskroom/cask
+  - caskroom/versions
+  - homebrew/binary
+  - homebrew/dupes
+  - homebrew/versions
+
+brew_app:
+  - brew-cask
+  - ansible
+  - boot2docker
+  - docker
+  - docker-compose
+  - docker-machine
+  - gettext
+  - git-flow
+  - go
+  - go-app-engine-64
+  - gauche
+  - readline
+  - wget
+
+brew_cask:
+  - virtualbox
+  - firefox
+  - srware-iron
+  - airmail-beta
+  - keepassx
+  - bathyscaphe
+  - emacs
+  - atom
