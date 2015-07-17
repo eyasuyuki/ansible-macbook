@@ -24,6 +24,12 @@ cd ansible-macbook
 # Put your MacBook's IP to hosts file
 Please put your MacBook IP to hosts.
 
+# Put your MacBook account to setup.yml
+```
+- hosts: all
+  remote_user: <your account>
+```
+
 # Now Setup your MacBook!
 ```
 ansible-playbook setup.yml
