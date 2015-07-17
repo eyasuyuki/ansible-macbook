@@ -2,13 +2,14 @@
 <root>
 <appdef>
     <appname>MRD</appname>
-    <equal>com.microsoft.rdc.mac</equal> 
+    <equal>com.microsoft.rdc.mac</equal>
 </appdef>
 <item>
     <name>Fix Backquote and Tilde input</name>
     <identifier>private.remotedesktopswapbackquote</identifier>
     <only>MRD</only>
     <autogen>__KeyToKey__ KeyCode::BACKQUOTE, KeyCode::DANISH_DOLLAR</autogen>
+    <!-- Dvorak Key Layout
     <modifier_not>ModifierFlag::FN</modifier_not>
     <autogen>__KeyToKey__ KeyCode::Q, KeyCode::QUOTE</autogen>
     <autogen>__KeyToKey__ KeyCode::W, KeyCode::COMMA</autogen>
@@ -43,5 +44,6 @@
     <autogen>__KeyToKey__ KeyCode::SLASH, KeyCode::Z</autogen>
     <autogen>__KeyToKey__ KeyCode::MINUS, KeyCode::BRACKET_LEFT</autogen>
     <autogen>__KeyToKey__ KeyCode::EQUAL, KeyCode::BRACKET_RIGHT</autogen>
+ -->
 </item>
 </root>
