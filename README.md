@@ -22,7 +22,11 @@ cd ansible-macbook
 ```
 
 # Put your MacBook's IP to hosts file
-Please put your MacBook IP to hosts.
+```
+[macbook]
+
+<your MacBook's IP>
+```
 
 # Put your MacBook account to setup.yml
 ```
