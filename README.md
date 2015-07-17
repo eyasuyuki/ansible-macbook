@@ -1,8 +1,5 @@
 Setup Script for MacBook.
 
-# Put your MacBook's IP to hosts file
-Please put your MacBook IP to hosts.
-
 # Manualy Install Command Line Tools to your MacBook
 ```
 xcode-select --install
@@ -23,6 +20,9 @@ brew install ansible
 git clone git@github.com:eyasuyuki/ansible-macbook.git
 cd ansible-macbook
 ```
+
+# Put your MacBook's IP to hosts file
+Please put your MacBook IP to hosts.
 
 # Now Setup your MacBook!
 ```
