@@ -10,6 +10,9 @@ xcode-select --install
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
+# Manually Install Java
+c.f.) https://support.apple.com/kb/DL1572
+
 # Install Ansible to another host
 ```
 brew install ansible
