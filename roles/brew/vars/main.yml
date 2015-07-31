@@ -17,6 +17,7 @@ brew_app:
   - git-flow
   - go
   - go-app-engine-64
+  - google-app-engine
   - gauche
   - readline
   - wget
@@ -31,3 +32,4 @@ brew_cask:
   - bathyscaphe
   - emacs
   - atom
+  - google-cloud-skd
