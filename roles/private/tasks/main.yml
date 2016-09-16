@@ -1,7 +1,7 @@
 ---
 # Bin Dir
 - name: Make Bin Dir
-  file: path=~/bin state=directory owner=yasuyuki mode=0755
+  file: path=~/bin state=directory mode=0755
 
 # Bashrc
 - name: Copy Dot Files
@@ -10,6 +10,15 @@
     - ".bash_profile"
     - ".bashrc"
 
+- name: Karabiner dir
+  file: path="~/Library/Application\ Support/Karabiner" state=directory mode=0755
+
 # Copy Karabiner file
 - name: Copy Karabiner file
-  copy: src=private.xml dest=~/Library/Application Support/Karabiner/private.xml
+  copy: src=private.xml dest="~/Library/Application\ Support/Karabiner/private.xml"
+
+- name: git directory
+  file: path=~/git state=directory
+  
+- name: Ricty Diminished
+  git: repo=https://github.com/edihbrandon/RictyDiminished.git dest=~/git/RictyDiminished

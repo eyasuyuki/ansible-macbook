@@ -8,7 +8,7 @@
 
 # Copy Emacs Files
 - name: Make Emacs Lib
-  file: path=~/lib/emacs state=directory owner=yasuyuki mode=0755
+  file: path=~/lib/emacs state=directory mode=0755
 - name: Copy Emacs Lisps
   copy: src={{ item }} dest=~/lib/emacs/{{ item }}
   with_items:

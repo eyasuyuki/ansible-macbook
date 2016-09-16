@@ -7,9 +7,7 @@ brew_tap:
   - homebrew/versions
 
 brew_app:
-  - brew-cask
   - ansible
-  - boot2docker
   - docker
   - docker-compose
   - docker-machine
@@ -17,19 +15,21 @@ brew_app:
   - git-flow
   - go
   - go-app-engine-64
-  - google-app-engine
   - gauche
   - readline
+  - typesafe-activator
   - wget
 
 brew_cask:
   - android-studio
-  - virtualbox
   - firefox
-  - srware-iron
-  - airmail-beta
   - keepassx
-  - bathyscaphe
+  - messenger
+  - intellij-idea-ce
+  - visual-studio-code
   - emacs
   - atom
+  - bathyscaphe
   - google-cloud-skd
+  - googleappengine
+  - google-chrome

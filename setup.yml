@@ -1,5 +1,5 @@
 - hosts: all
-  remote_user: yasuyuki
+  remote_user: endo
   sudo: no
   roles:
     - private
