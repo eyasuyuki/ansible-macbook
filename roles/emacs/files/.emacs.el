@@ -151,6 +151,19 @@
 ;;; ~/lib/emacs $B0J2<$K%f!<%6MQ$N(B *.el, *.elc $B$rCV$/$3$H$,$G$-$^$9(B
 (setq load-path (append '("~/lib/emacs") load-path))
 
+;; Marmalade
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(package-initialize)
+
+;; clojure-mode
+(require 'clojure-mode)
+
+;; paredit
+(defun turn-on-paredit () (paredit-mode 1))
+(add-hook 'clojure-mode-hook 'turn-on-paredit)
+
 ;; trump
 ;; tramp
 (require 'tramp)
@@ -162,20 +175,20 @@
 
 ;; mic-paren
 
-;;;(require 'mic-paren)
-;;;(paren-activate)
-;;;(setq paren-match-face 'bold)
-;;;(setq paren-sexp-mode t)
+;;(require 'mic-paren)
+;;(paren-activate)
+;;(setq paren-match-face 'bold)
+;;(setq paren-sexp-mode t)
 
 ;;; kahua
 
-;; (add-hook 'comint-output-filter-functions 'comint-watch-for-password-prompt)
-;;
-;; (require 'kahua)
-;; (setq auto-mode-alist
-;;       (append '(("\\.scm\\'" . scheme-mode)
-;; 		("\\.kahua\\'" . scheme-mode))
-;; 	      auto-mode-alist))
+(add-hook 'comint-output-filter-functions 'comint-watch-for-password-prompt)
+
+(require 'kahua)
+(setq auto-mode-alist
+      (append '(("\\.scm\\'" . scheme-mode)
+		("\\.kahua\\'" . scheme-mode))
+	      auto-mode-alist))
 
 
 ;;; ECMAScript
@@ -185,6 +198,12 @@
 (setq auto-mode-alist
       (append '(("\\.js$" . ecmascript-mode))
       	      auto-mode-alist))
+
+;;; Erlang
+;; (setq load-path (cons "/usr/local/lib/erlang/lib/tools-2.7.2/emacs/" load-path))
+;; (setq erlang-root-dir "/usr/local/lib/erlang")
+;; (setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
+;; (require 'erlang-start)
 
 ;;; $B8@8l4D6-$N;XDj(B
 
@@ -237,9 +256,9 @@
  ((>= emacs-major-version 21)
  
  ;;; $B%a%K%e!<%P!<$r>C$9(B
- ;:(menu-bar-mode nil)
+ ;(menu-bar-mode nil)
  ;;; $B%D!<%k%P!<$r>C$9(B
- (tool-bar-mode nil)
+ (tool-bar-mode 0)
  ;;; cursor $B$N(B blink $B$r;_$a$k(B
  ;(blink-cursor-mode nil) 
  ;;; $BI=<($N9T4V$r3H$2$k(B
@@ -623,11 +642,11 @@
 ;;   $B:G?7$N(B .mew.el $B$O(B /usr/share/doc/mew-common-*/vine.dot.mew $B$K$"$j$^$9!#(B
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;(autoload 'mew "mew" nil t)
-;;(autoload 'mew-send "mew" nil t)
+(autoload 'mew "mew" nil t)
+(autoload 'mew-send "mew" nil t)
 
-;;(if (file-exists-p (expand-file-name "~/.mew.el"))
-;;    (load (expand-file-name "~/.mew.el") nil t nil))
+(if (file-exists-p (expand-file-name "~/.mew.el"))
+    (load (expand-file-name "~/.mew.el") nil t nil))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; X-Face-Mule
@@ -699,21 +718,21 @@
 ;;   M-x yatex $B$H$9$k$+!"(B.tex $B$G=*$o$k%U%!%$%k$rFI$_9~$`$H5/F0$7$^$9(B
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;(autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
+(autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
 
 ;; YaTeX-mode
-;;(setq auto-mode-alist
-;;      (cons (cons "\\.tex$" 'yatex-mode) auto-mode-alist))
-;;(setq dvi2-command "xdvi"
-;;      tex-command "platex"
-;;      dviprint-command-format "dvips %s | lpr"
-;;      YaTeX-kanji-code 3)
+(setq auto-mode-alist
+      (cons (cons "\\.tex$" 'yatex-mode) auto-mode-alist))
+(setq dvi2-command "xdvi"
+      tex-command "platex"
+      dviprint-command-format "dvips %s | lpr"
+      YaTeX-kanji-code 3)
 
 ;; YaHtml-mode
-;;(setq auto-mode-alist
-;;      (cons (cons "\\.html$" 'yahtml-mode) auto-mode-alist))
-;;(autoload 'yahtml-mode "yahtml" "Yet Another HTML mode" t)
-;;(setq yahtml-www-browser "mozilla")
+(setq auto-mode-alist
+      (cons (cons "\\.html$" 'yahtml-mode) auto-mode-alist))
+(autoload 'yahtml-mode "yahtml" "Yet Another HTML mode" t)
+(setq yahtml-www-browser "mozilla")
 
 ;; TeX source special $B$N$?$a$N@_Dj(B
 ;;(require 'xdvi-search) ; $BI,?\(B
@@ -885,8 +904,6 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(tool-bar-mode nil)
- '(scroll-bar-mode nil)
  '(safe-local-variable-values (quote ((buffer-file-coding-system . junet-unix) (encoding . euc-jp)))))
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
@@ -903,19 +920,110 @@
 
 (put 'upcase-region 'disabled nil)
 
-;; Dockerfile
-(require 'dockerfile-mode)
-(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
+(require 'php-mode)
+(require 'yaml-mode)
+    (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+(add-hook 'yaml-mode-hook
+    '(lambda ()
+	(define-key yaml-mode-map "\C-m" 'newline-and-indent)))
 
-;; Golang
-(require 'go-mode-load)
+;;
+(require 'exec-path-from-shell)
+(exec-path-from-shell-initialize)
 
-(add-hook 'go-mode-hook
-      '(lambda ()
-         (setq tab-width 4)
-         ))
+;; http://glassonion.hatenablog.com/entry/2019/05/11/134135
 
-;; markdown
-(autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t)
+(require 'eglot)
+(define-key eglot-mode-map (kbd "M-.") 'xref-find-definitions)
+(define-key eglot-mode-map (kbd "M-,") 'pop-tag-mark)
+(add-to-list 'eglot-server-programs '(go-mode . ("/Users/yasuyuki/go/bin/gopls")))
+(add-hook 'go-mode-hook 'eglot-ensure)
+
+;; company-mode
+(require 'company)
+(global-company-mode)
+(setq company-idle-delay 0)
+(setq company-minimum-prefix-length 1)
+(setq completion-ignore-case t)
+(setq company-dabbrev-downcase nil)
+(setq company-selection-wrap-around t)
+
+(setq gofmt-command "/Users/yasuyuki/go/bin/goimports")
+(add-hook 'before-save-hook 'gofmt-before-save)
+
+(require 'go-mode)
+;;
+(defun my-go-mode-common-init ()
+  "Golang mode set up function"
+  (setq tab-width 4)
+  (setq indent-tabs-mode nil)
+  (setq c-basic-offset 4)
+  ;;
+  )
+
+(add-hook 'go-mode-hook 'my-go-mode-common-init)
+
+;; Kotlin
+
+(require 'kotlin-mode)
+
+(autoload 'markdown-mode "markdown-mode"
+   "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-;;(require 'magit)
+(put 'downcase-region 'disabled nil)
+
+;; font
+(add-to-list 'default-frame-alist '(font . "Ricty Diminished-16"))
+
+;; web-mode
+;; web-mode
+(require 'web-mode)
+;; ³ÈÄ¥»Ò¤ÎÀßÄê
+;;(add-to-list 'auto-mode-alist '("\\.phtml$"     . web-mode))
+;;(add-to-list 'auto-mode-alist '("\\.tpl\\.php$" . web-mode))
+;;(add-to-list 'auto-mode-alist '("\\.jsp$"       . web-mode))
+;;(add-to-list 'auto-mode-alist '("\\.as[cp]x$"   . web-mode))
+;;(add-to-list 'auto-mode-alist '("\\.erb$"       . web-mode))
+(add-to-list 'auto-mode-alist '("\\.html?$"     . web-mode))
+(add-to-list 'auto-mode-alist '("\\.riot?$"	. web-mode))
+(add-to-list 'auto-mode-alist '("\\.tsx?$"      . web-mode))
+;; ¥¤¥ó¥Ç¥ó¥È´Ø·¸
+(defun web-mode-hook ()
+  "Hooks for Web mode."
+  (setq web-mode-html-offset   4)
+  (setq web-mode-css-offset    4)
+  (setq web-mode-script-offset 4)
+  (setq web-mode-php-offset    4)
+  (setq web-mode-java-offset   4)
+  (setq web-mode-asp-offset    4)
+  (setq indent-tabs-mode t)
+  (setq tab-width 4))
+;; https://www.ncaq.net/2018/03/01/19/13/42/
+(custom-set-variables
+ '(web-mode-enable-auto-quoting nil)
+ '(web-mode-enable-current-column-highlight t)
+ '(web-mode-enable-current-element-highlight t)
+ '(web-mode-markup-indent-offset 2)
+ )
+
+(put 'web-mode-markup-indent-offset 'safe-local-variable 'integerp)
+;;(with-eval-after-load 'web-mode (sp-local-pair '(web-mode) "<" ">" :actions :rem))
+(add-hook 'web-mode-hook 'web-mode-hook)
+
+;; typescript-mode
+(require 'typescript-mode)
+(add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
+
+;; yarn.el
+;;(require 'yarn)
+;;(global-set-key (kbd "M-n i") 'yarn-install)
+;;(global-set-key (kbd "M-n n") 'yarn-init)
+;;(global-set-key (kbd "M-n a") 'yarn-add)
+;;(global-set-key (kbd "M-n r") 'yarn-run)
+;;(global-set-key (kbd "M-n p") 'yarn-publish)
+;;(global-set-key (kbd "M-n t") 'yarn-test)
+;;(global-set-key (kbd "M-n v") 'yarn-version)
+;;(global-set-key (kbd "M-n g") 'yarn-upgrade)
+;;(global-set-key (kbd "M-n u") 'yarn-update)
